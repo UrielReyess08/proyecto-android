@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/ayuda.xml" value="0.37864583333333335" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/login.xml" value="0.37864583333333335" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/logout.xml" value="0.37864583333333335" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main2.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main3.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/menu/menu.xml" value="0.3625" />
       </map>
     </option>
   </component>
@@ -12,5 +18,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.28940217391304346" />
+      </ProjectState>
+    </option>
   </component>
 </project>

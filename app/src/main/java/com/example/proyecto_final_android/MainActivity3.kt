@@ -5,18 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class MainActivity : AppCompatActivity() {
+class MainActivity3 : AppCompatActivity() {
 
-    lateinit var btnsesion: Button
+    lateinit var btnregresar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main3)
 
-        btnsesion = findViewById(R.id.btnsesion)
+        btnregresar = findViewById(R.id.btnregresar)
 
-        //FUNCION TEMPORAL PARA VER CAMBIOS DEL MENU
-        btnsesion.setOnClickListener{
+        //BOTON PARA REGRESAR AL MENU
+        btnregresar.setOnClickListener{
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
