@@ -15,6 +15,30 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
     }
 
+    fun registrarVenta(): Boolean {
+        val registrarVenta = Intent(this, RegistrarVenta::class.java)
+        startActivity(registrarVenta)
+        return true
+    }
+
+    fun registrarProducto(): Boolean {
+        val registrarProducto = Intent(this, RegistrarProducto::class.java)
+        startActivity(registrarProducto)
+        return true
+    }
+
+    fun listaVenta(): Boolean {
+        val listaVenta = Intent(this, ListarVentas::class.java)
+        startActivity(listaVenta)
+        return true
+    }
+
+    fun listaProducto(): Boolean {
+        val listaProducto = Intent(this, ListarProductos::class.java)
+        startActivity(listaProducto)
+        return true
+    }
+
     fun somos(): Boolean {
         val somos = Intent(this, MainActivity3::class.java)
         startActivity(somos)
@@ -38,6 +62,10 @@ class MainActivity2 : AppCompatActivity() {
             }
             R.id.quienes -> return somos()
             R.id.cerrar -> return salir()
+            R.id.listap -> return listaProducto()
+            R.id.listav -> return listaVenta()
+            R.id.registrarp -> return registrarProducto()
+            R.id.registrarv -> return registrarVenta()
             else -> return super.onOptionsItemSelected(item)
         }
     }

@@ -16,8 +16,16 @@
         android:icon="@drawable/exit"
         android:title="Cerrar"
         app:showAsAction="always" />
-    <item android:title="Lista de productos" />
-    <item android:title="Lista de ventas" />
-    <item android:title="Registrar producto" />
-    <item android:title="Registrar venta" />
+    <item
+        android:id="@+id/listap"
+        android:title="Lista de productos" />
+    <item
+        android:id="@+id/listav"
+        android:title="Lista de ventas" />
+    <item
+        android:id="@+id/registrarp"
+        android:title="Registrar producto" />
+    <item
+        android:id="@+id/registrarv"
+        android:title="Registrar venta" />
 </menu>

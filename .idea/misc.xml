@@ -4,11 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/ayuda.xml" value="0.37864583333333335" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/ic_baseline_local_pizza_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/login.xml" value="0.37864583333333335" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/drawable/logout.xml" value="0.37864583333333335" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_lista_producto.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_listar_productos.xml" value="0.32518115942028986" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_listar_ventas.xml" value="0.32518115942028986" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main2.xml" value="0.3625" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main3.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_main4.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_registrar_producto.xml" value="0.32518115942028986" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/activity_registrar_venta.xml" value="0.32518115942028986" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/layout_list_product.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/list_item_product.xml" value="0.3625" />
+        <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/layout/view_products.xml" value="0.33061594202898553" />
         <entry key="..\:/CICLO 5/proyectofinalandroid/app/src/main/res/menu/menu.xml" value="0.3625" />
       </map>
     </option>
