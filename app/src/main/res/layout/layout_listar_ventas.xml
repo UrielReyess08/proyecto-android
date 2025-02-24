@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textViewDni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DNI" />
+
+    <TextView
+        android:id="@+id/textViewDateLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/textViewClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client" />
+
+    <TextView
+        android:id="@+id/textViewProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product" />
+
+    <TextView
+        android:id="@+id/textViewQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity" />
+
+    <TextView
+        android:id="@+id/textViewTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total" />
+
+    <TextView
+        android:id="@+id/textViewDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discount" />
+</LinearLayout>

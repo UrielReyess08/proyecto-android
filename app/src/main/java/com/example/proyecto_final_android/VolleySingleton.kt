@@ -1,33 +1,28 @@
 package com.example.proyecto_final_android
 
 import android.app.Application
+import android.content.Context
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
 
-class VolleySingleton : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }
-
-    val requestQueue: RequestQueue? = null
-        get() {
-            if (field == null) {
-                return Volley.newRequestQueue(applicationContext)
-            }
-            return field
-        }
-
-    fun <T> addToRequestQueue(request: Request<T>) {
-        request.tag = TAG
-        requestQueue?.add(request)
+class VolleySingleton private constructor(context: Context) {
+    val requestQueue: RequestQueue by lazy {
+        Volley.newRequestQueue(context.applicationContext)
     }
 
     companion object {
-        private val TAG = VolleySingleton::class.java.simpleName
-        @get:Synchronized var instance: VolleySingleton? = null
-            private set
+        @Volatile
+        private var INSTANCE: VolleySingleton? = null
+
+        fun getInstance(context: Context) =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: VolleySingleton(context).also { INSTANCE = it }
+            }
+    }
+
+    fun addToRequestQueue(req: Request<*>) {
+        requestQueue.add(req)
     }
 }

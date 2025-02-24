@@ -25,9 +25,6 @@
             android:name=".ListarProductos"
             android:exported="true" />
         <activity
-            android:name=".ViewProductsActivity"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity3"
             android:exported="true" />
         <activity
