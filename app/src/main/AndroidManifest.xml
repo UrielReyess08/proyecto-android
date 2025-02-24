@@ -13,6 +13,7 @@
         android:theme="@style/Theme.Proyectofinalandroid"
         android:usesCleartextTraffic="true">
         <activity
+
             android:name=".RegistrarVenta"
             android:exported="true" />
         <activity

@@ -81,7 +81,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/txtname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -99,7 +99,7 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/txtpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
