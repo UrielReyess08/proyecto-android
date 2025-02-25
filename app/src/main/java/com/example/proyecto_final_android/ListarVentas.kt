@@ -22,6 +22,7 @@ class ListarVentas : AppCompatActivity() {
     lateinit var salesList: ArrayList<Venta>
     lateinit var adapter: VentaLista
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listar_ventas)
@@ -76,7 +77,7 @@ class ListarVentas : AppCompatActivity() {
                             product,
                             jsonObject.getInt("quantity"),
                             jsonObject.getDouble("total"),
-                            jsonObject.getBoolean("discount")
+                            jsonObject.getDouble("discount")
                         )
                         salesList.add(sale)
                     }
@@ -115,7 +116,7 @@ class ListarVentas : AppCompatActivity() {
                         product,
                         response.getInt("quantity"),
                         response.getDouble("total"),
-                        response.getBoolean("discount")
+                        response.getDouble("discount")
                     )
                     salesList.add(sale)
 
