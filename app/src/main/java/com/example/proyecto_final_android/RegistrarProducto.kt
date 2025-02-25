@@ -3,9 +3,7 @@ package com.example.proyecto_final_android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -19,6 +17,7 @@ class RegistrarProducto : AppCompatActivity() {
     lateinit var editTextName: EditText
     lateinit var editTextPrice: EditText
     lateinit var editTextStock: EditText
+    lateinit var radioGroupSize: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +29,7 @@ class RegistrarProducto : AppCompatActivity() {
         editTextName = findViewById(R.id.editTextName)
         editTextPrice = findViewById(R.id.editTextPrice)
         editTextStock = findViewById(R.id.editTextStock)
+        radioGroupSize = findViewById(R.id.radioGroupSize)
 
         btnregresar4.setOnClickListener{
             val intent = Intent(this, MainActivity2::class.java)
@@ -41,16 +41,18 @@ class RegistrarProducto : AppCompatActivity() {
             val name = editTextName.text.toString()
             val price = editTextPrice.text.toString()
             val stock = editTextStock.text.toString()
+            val selectedSizeId = radioGroupSize.checkedRadioButtonId
+            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
 
             if (code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty()) {
                 Toast.makeText(this, "Porfavor complete todos los campos", Toast.LENGTH_SHORT).show()
             } else {
-                addProduct(code, name, price.toDouble(), stock.toInt())
+                addProduct(code, name, price.toDouble(), stock.toInt(), selectedSize)
             }
         }
     }
 
-    private fun addProduct(code: String, name: String, price: Double, stock: Int) {
+    private fun addProduct(code: String, name: String, price: Double, stock: Int, size: String) {
         val url = EndPoints.SAVE_PRODUCT
         val requestQueue = Volley.newRequestQueue(this)
 
@@ -59,6 +61,7 @@ class RegistrarProducto : AppCompatActivity() {
         jsonBody.put("name", name)
         jsonBody.put("price", price)
         jsonBody.put("stock", stock)
+        jsonBody.put("size", size)
 
         val request = object : StringRequest(
             Request.Method.POST, url,

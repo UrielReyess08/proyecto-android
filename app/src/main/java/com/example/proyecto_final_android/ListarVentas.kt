@@ -67,7 +67,8 @@ class ListarVentas : AppCompatActivity() {
                             productObject.getString("code"),
                             productObject.getString("name"),
                             productObject.getDouble("price"),
-                            productObject.getInt("stock")
+                            productObject.getInt("stock"),
+                            productObject.getString("size")
                         )
                         val sale = Venta(
                             jsonObject.getString("numberSale"),
@@ -106,7 +107,8 @@ class ListarVentas : AppCompatActivity() {
                         productObject.getString("code"),
                         productObject.getString("name"),
                         productObject.getDouble("price"),
-                        productObject.getInt("stock")
+                        productObject.getInt("stock"),
+                        productObject.getString("size")
                     )
                     val sale = Venta(
                         response.getString("numberSale"),

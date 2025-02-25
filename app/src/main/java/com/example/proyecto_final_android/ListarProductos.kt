@@ -65,7 +65,8 @@ class ListarProductos : AppCompatActivity() {
                         jsonObject.getString("code"),
                         jsonObject.getString("name"),
                         jsonObject.getDouble("price"),
-                        jsonObject.getInt("stock")
+                        jsonObject.getInt("stock"),
+                        jsonObject.getString("size")
                     )
                     productList.add(product)
                 }
@@ -91,7 +92,8 @@ class ListarProductos : AppCompatActivity() {
                         productObject.getString("code"),
                         productObject.getString("name"),
                         productObject.getDouble("price"),
-                        productObject.getInt("stock")
+                        productObject.getInt("stock"),
+                        productObject.getString("size")
                     )
                     productList.add(product)
                 }
