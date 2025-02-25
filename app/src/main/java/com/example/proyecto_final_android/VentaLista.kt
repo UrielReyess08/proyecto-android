@@ -13,17 +13,19 @@ class VentaLista(private val context: Activity, private val sales: List<Venta>) 
         val inflater = context.layoutInflater
         val listViewItem = inflater.inflate(R.layout.layout_listar_ventas, null, true)
 
+        val textNumberSale = listViewItem.findViewById<TextView>(R.id.textNumberSale)
         val textViewDni = listViewItem.findViewById<TextView>(R.id.textViewDni)
+        val textViewDateLocal = listViewItem.findViewById<TextView>(R.id.textViewDateLocal)
         val textViewClient = listViewItem.findViewById<TextView>(R.id.textViewClient)
-        val textViewDate = listViewItem.findViewById<TextView>(R.id.textViewDateLocal)
         val textViewProduct = listViewItem.findViewById<TextView>(R.id.textViewProduct)
         val textViewQuantity = listViewItem.findViewById<TextView>(R.id.textViewQuantity)
         val textViewTotal = listViewItem.findViewById<TextView>(R.id.textViewTotal)
         val textViewDiscount = listViewItem.findViewById<TextView>(R.id.textViewDiscount)
 
         val sale = sales[position]
+        textNumberSale.text = sale.number_sale
         textViewDni.text = sale.dni
-        textViewDate.text = sale.date
+        textViewDateLocal.text = sale.date
         textViewClient.text = sale.client
         textViewProduct.text = sale.product.name
         textViewQuantity.text = sale.quantity.toString()

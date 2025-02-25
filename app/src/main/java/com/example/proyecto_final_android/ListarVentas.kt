@@ -1,11 +1,11 @@
 package com.example.proyecto_final_android
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import org.json.JSONArray
@@ -28,7 +28,7 @@ class ListarVentas : AppCompatActivity() {
         adapter = VentaLista(this, salesList)
         listViewSales.adapter = adapter
 
-        btnregresar3.setOnClickListener{
+        btnregresar3.setOnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
@@ -53,6 +53,7 @@ class ListarVentas : AppCompatActivity() {
                             productObject.getInt("stock")
                         )
                         val sale = Venta(
+                            jsonObject.getString("numberSale"),
                             jsonObject.getString("dni"),
                             jsonObject.getString("date"),
                             jsonObject.getString("client"),

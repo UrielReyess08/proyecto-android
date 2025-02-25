@@ -79,12 +79,12 @@ class ListarProductos : AppCompatActivity() {
     }
 
     private fun searchProductByCode(code: String) {
-        val url = "${EndPoints.GET_CODE_PRODUCTS}/$code"  // URL corregida
+        val url = "${EndPoints.GET_CODE_PRODUCTS}/$code"
 
         val request = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response: JSONArray ->
-                productList.clear() // Limpiar lista antes de agregar nuevos productos
+                productList.clear()
                 for (i in 0 until response.length()) {
                     val productObject = response.getJSONObject(i)
                     val product = Producto(
