@@ -30,7 +30,7 @@ class VentaLista(private val context: Activity, private val sales: List<Venta>) 
         textViewProduct.text = sale.product.name
         textViewQuantity.text = sale.quantity.toString()
         textViewTotal.text = sale.total.toString()
-        textViewDiscount.text = if (sale.discount) "Yes" else "No"
+        textViewDiscount.text = sale.discount.toString()
 
         return listViewItem
     }

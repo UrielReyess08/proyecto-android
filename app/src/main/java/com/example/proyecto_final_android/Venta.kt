@@ -8,5 +8,5 @@ data class Venta(
     val product: Producto,
     val quantity: Int,
     val total: Double,
-    val discount: Boolean
+    val discount: Double
 )
