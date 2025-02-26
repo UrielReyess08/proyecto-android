@@ -111,7 +111,7 @@ class RegistrarVenta : AppCompatActivity() {
                     stock = item.getInt("stock")
                 )
                 productList.add(product)
-                items.add("${product.name} - S/. ${product.price}")
+                items.add("${product.name} - S/. ${product.price} - Stock:${product.stock}")
             }
 
             val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
@@ -210,13 +210,24 @@ class RegistrarVenta : AppCompatActivity() {
             put("total", total)
         }
 
-        val request = JsonObjectRequest(Request.Method.POST, EndPoints.SAVE_SALE, jsonVenta, { response ->
-            Toast.makeText(this, "Venta registrada con éxito", Toast.LENGTH_LONG).show()
-            Toast.makeText(this, "Venta registrada con éxito", Toast.LENGTH_LONG).show()
+        val request = JsonObjectRequest(Request.Method.POST, EndPoints.SAVE_SALE, jsonVenta,
+            { response ->
+                Toast.makeText(this, "Venta registrada con éxito", Toast.LENGTH_LONG).show()
+            },
+            { error ->
+                Toast.makeText(this,
+                    if (error.networkResponse?.data != null &&
+                        String(error.networkResponse.data, Charsets.UTF_8).contains("Stock insuficiente", ignoreCase = true))
+                        "No hay stock disponible"
+                    else
+                        "Error al registrar la venta",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        )
 
-        }, { error ->
-            Toast.makeText(this, "Error al registrar la venta: ${error.message}", Toast.LENGTH_LONG).show()
-        })
+        queue.add(request)
+
 
         queue.add(request)
     }
@@ -238,8 +249,6 @@ class RegistrarVenta : AppCompatActivity() {
 
         txtdni.requestFocus()
     }
-
-
 
 }
 
