@@ -44,17 +44,21 @@ class VentaLista(private val context: Activity, private val sales: MutableList<V
     }
 
 
-
     private fun disableSale(numberSale: String, position: Int) {
         val url = "${EndPoints.DISABLE_SALE}/$numberSale"
 
         val request = StringRequest(
             Request.Method.PUT, url,
             { response ->
-                Toast.makeText(context, "Venta desactivada correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Venta desactivada correctamente", Toast.LENGTH_SHORT)
+                    .show()
             },
             { error ->
-                Toast.makeText(context, "Error al desactivar: ${error.networkResponse?.statusCode ?: "null"}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Error al desactivar: ${error.networkResponse?.statusCode ?: "null"}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         )
 

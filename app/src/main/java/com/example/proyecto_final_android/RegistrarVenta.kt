@@ -212,6 +212,7 @@ class RegistrarVenta : AppCompatActivity() {
 
         val request = JsonObjectRequest(Request.Method.POST, EndPoints.SAVE_SALE, jsonVenta, { response ->
             Toast.makeText(this, "Venta registrada con éxito", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Venta registrada con éxito", Toast.LENGTH_LONG).show()
 
         }, { error ->
             Toast.makeText(this, "Error al registrar la venta: ${error.message}", Toast.LENGTH_LONG).show()
