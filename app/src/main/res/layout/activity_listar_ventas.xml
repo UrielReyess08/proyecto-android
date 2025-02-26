@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF5722"
     android:orientation="vertical">
 
     <EditText
@@ -9,23 +11,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter sale code"
-        android:inputType="textPersonName" />
-    <Button
-        android:id="@+id/btnSearch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search" />
-    <Button
+        android:hint="Buscar por código"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:textColorHint="@android:color/darker_gray"
+        android:textStyle="bold|italic" />
+    />
 
-        android:id="@+id/btnregresar3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Regresar" />
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSearch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="buscar"
+            app:backgroundTint="#222121" />/>
+
+        <Button
+
+            android:id="@+id/btnregresar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regresar"
+            app:backgroundTint="#222121" />
+    </LinearLayout>
 
 
     <ListView
         android:id="@+id/listViewSales"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#222121"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"/>
+
+
 </LinearLayout>
