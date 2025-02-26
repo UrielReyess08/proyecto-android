@@ -4,14 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#272626"
+    android:background="#FF5722"
     tools:context=".MainActivity3">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="324dp"
+        android:layout_height="149dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175"
+        app:srcCompat="@drawable/quienessomos" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SOMOS MAMMAMÍA"
+        android:text="SOMOS MAMMAMÍA"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold|italic"
@@ -20,32 +32,45 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.022" />
+
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="319dp"
-        android:layout_height="70dp"
-        android:text="La pizzería Mammia es un establecimiento especializado en la preparación de pizzas artesanales con ingredientes frescos y de alta calidad."
+        android:layout_width="414dp"
+        android:layout_height="306dp"
+        android:background="#222121"
+        android:elevation="1dp"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:padding="16dp"
+        android:text="La pizzería Mammamia es un establecimiento dedicado a la preparación de pizzas artesanales, elaboradas con ingredientes frescos y de alta calidad.\n\n
+📌 Síguenos en nuestras redes sociales:\n\n
+📍 Facebook: @MammamiaPizzeria\n
+📍 Instagram: @mammamia_pizza\n
+📍 TikTok: @mammamia_pizzeria\n\n
+¡Ven a disfrutar de la mejor pizza artesanal y vive la experiencia Mammamia! 🍕🔥"
         android:textColor="#FFFFFF"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:autoSizeTextType="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.813" />
 
     <Button
         android:id="@+id/btnregresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="REGRESAR"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#222121"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        app:layout_constraintVertical_bias="0.989" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,29 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:background="#FF5722"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/editTextProductCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter product code" />
+        android:hint="Buscar por código"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:background="@android:drawable/edit_text"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:layout_marginBottom="10dp" />
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BUSCAR POR CODIGO" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
 
-    <Button
-        android:id="@+id/btnregresar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Regresar" />
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="120dp"
+            android:minHeight="40dp"
+            android:text="Buscar"
+            android:padding="6dp"
+            android:background="#222121"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:id="@+id/btnregresar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
+            android:minHeight="40dp"
+            android:text="Regresar"
+            android:padding="6dp"
+            android:background="#222121"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listViewProducts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#222121"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
 </LinearLayout>
