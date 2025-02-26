@@ -24,9 +24,6 @@
         android:text="Regresar" />
 
 
-
-
-
     <ListView
         android:id="@+id/listViewSales"
         android:layout_width="match_parent"

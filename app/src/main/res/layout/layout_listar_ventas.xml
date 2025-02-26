@@ -2,53 +2,81 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/textNumberSale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Number sale" />
+        android:text="Number sale"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewDni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DNI" />
+        android:text="DNI"
+        android:textSize="14sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewDateLocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date" />
+        android:text="Date"
+        android:textSize="14sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Client" />
+        android:text="Client"
+        android:textSize="14sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product" />
+        android:text="Product"
+        android:textSize="14sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantity" />
+        android:text="Quantity"
+        android:textSize="14sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total" />
+        android:text="Total"
+        android:textSize="14sp"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/textViewDiscount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Discount" />
+        android:text="Discount"
+        android:textSize="14sp"
+        android:padding="4dp"/>
+
+    <Button
+        android:id="@+id/btndeletesale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_gravity="end"
+        android:padding="4dp"/>
 </LinearLayout>
