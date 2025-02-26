@@ -61,14 +61,16 @@ class ListarProductos : AppCompatActivity() {
                 productList.clear()
                 for (i in 0 until response.length()) {
                     val jsonObject = response.getJSONObject(i)
-                    val product = Producto(
-                        jsonObject.getString("code"),
-                        jsonObject.getString("name"),
-                        jsonObject.getDouble("price"),
-                        jsonObject.getInt("stock"),
-                        jsonObject.getString("size")
-                    )
-                    productList.add(product)
+                    if (jsonObject.getBoolean("status")) {
+                        val product = Producto(
+                            jsonObject.getString("code"),
+                            jsonObject.getString("name"),
+                            jsonObject.getDouble("price"),
+                            jsonObject.getInt("stock"),
+                            jsonObject.getString("size")
+                        )
+                        productList.add(product)
+                    }
                 }
                 adapter.notifyDataSetChanged()
             },

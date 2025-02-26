@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         android:hint="Code" />
 
+    <Button
+        android:id="@+id/btnSearchProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BUSCAR PRODUCTO" />
+
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
@@ -38,6 +44,25 @@
         android:text="AGREGAR" />
 
     <Button
+        android:id="@+id/btnClearFields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LIMPIAR" />
+
+    <Button
+        android:id="@+id/btnUpdateProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDITAR" />
+
+    <Button
+        android:id="@+id/btnChangeStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR" />
+
+
+    <Button
         android:id="@+id/btnregresar4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,13 +84,13 @@
             android:id="@+id/radioMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium" />
+            android:text="Mediano" />
 
         <RadioButton
             android:id="@+id/radioFamily"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Family" />
+            android:text="Familiar" />
     </RadioGroup>
 
 </LinearLayout>

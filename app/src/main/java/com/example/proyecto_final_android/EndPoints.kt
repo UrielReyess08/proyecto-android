@@ -7,6 +7,8 @@ object EndPoints {
 
     const val GET_ALL_PRODUCTS = "$URL_ROOT/allProducts"
     const val SAVE_PRODUCT = "$URL_ROOT/save"
+    const val UPDATE_PRODUCT = "$URL_ROOT/update"
+    const val DELETE_PRODUCT = "$URL_ROOT/updateStatus"
 
     const val GET_CODE_PRODUCTS = "$URL_ROOT/code"
     const val GET_USER_LOGIN = "$URL_LOGIN/login"
@@ -14,5 +16,6 @@ object EndPoints {
     const val GET_ALL_SALES = "$URL_VENTA/allSales"
     const val GET_NUMBER_SALES = "$URL_VENTA"
     const val SAVE_SALE = "$URL_VENTA/save"
+    const val DISABLE_SALE = "$URL_VENTA/disable"
 
 }
