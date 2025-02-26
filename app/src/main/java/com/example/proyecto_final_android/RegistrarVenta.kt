@@ -62,10 +62,10 @@ class RegistrarVenta : AppCompatActivity() {
         cbdiscount = findViewById(R.id.cbdiscount)
 
 
-        // Cargar productos en el Spinner
+
         loadProducts()
 
-        // Calcular el total cuando cambie la cantidad
+
         txtquantity.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 calculateSubTotal()
@@ -85,7 +85,7 @@ class RegistrarVenta : AppCompatActivity() {
             new()
         }
         cbdiscount.setOnCheckedChangeListener { _, _ ->
-            calculateTotal()  // Recalcula el total con o sin descuento
+            calculateTotal()
         }
 
         btnregresar5.setOnClickListener {
@@ -94,7 +94,7 @@ class RegistrarVenta : AppCompatActivity() {
         }
     }
 
-    // Función para obtener productos de la API
+
     private fun loadProducts() {
         val queue = Volley.newRequestQueue(this)
         val request = JsonArrayRequest(Request.Method.GET, EndPoints.GET_ALL_PRODUCTS, null, { response ->
@@ -125,7 +125,7 @@ class RegistrarVenta : AppCompatActivity() {
         queue.add(request)
     }
 
-    // Función para calcular el total basado en el producto seleccionado y la cantidad
+
     private fun calculateSubTotal() {
         val quantity = txtquantity.text.toString().toIntOrNull() ?: 0
         val selectedIndex = cbolista.selectedItemPosition
@@ -147,20 +147,20 @@ class RegistrarVenta : AppCompatActivity() {
         val igv = txtigv.text.toString().toDoubleOrNull() ?: 0.0
         var descuento = 0.0
 
-        // Aplica descuento si el CheckBox está marcado (10% sobre el subtotal)
+
         if (cbdiscount.isChecked) {
             descuento = subtotal * 0.10
         }
 
         val total = subtotal - descuento + igv
 
-        // Formatear a dos decimales
+
         val totalFormateado = String.format("%.2f", total)
 
         txttotal.setText(totalFormateado)
     }
 
-    // Función para obtener la fecha actual en formato "YYYY-MM-DD"
+
     private fun getCurrentDate(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return sdf.format(Date())
@@ -169,12 +169,11 @@ class RegistrarVenta : AppCompatActivity() {
 
 
 
-    // Función para registrar la venta en la API
-    // Función para registrar la venta en la API
+
     private fun saveSale() {
         val queue = Volley.newRequestQueue(this)
 
-       // val numberSale = "V${System.currentTimeMillis()}" // Genera un número de venta único
+
         val numbersale = txtnumbersale.text.toString()
         val dni = txtdni.text.toString()
         val date = getCurrentDate()
@@ -192,14 +191,14 @@ class RegistrarVenta : AppCompatActivity() {
         val igv = subtotal * 0.18
         var total = subtotal + igv
 
-        // Aplica descuento si el CheckBox está marcado
+
         val discount = if (cbdiscount.isChecked) subtotal * 0.10 else 0.0
-        total -= discount // Aplica el descuento al total
+        total -= discount
 
         val jsonVenta = JSONObject().apply {
             put("numberSale", numbersale)
             put("dni", dni)
-            put("date", date)  // En formato "YYYY-MM-DD"
+            put("date", date)
             put("client", client)
             put("product", JSONObject().apply {
                 put("id", product.id)
@@ -207,36 +206,18 @@ class RegistrarVenta : AppCompatActivity() {
             put("quantity", quantity)
             put("subtotal", subtotal)
             put("igv", igv)
-            put("discount", discount) // Ahora el descuento se envía a la API
-            put("total", total) // Total ajustado con el descuento
+            put("discount", discount)
+            put("total", total)
         }
 
         val request = JsonObjectRequest(Request.Method.POST, EndPoints.SAVE_SALE, jsonVenta, { response ->
             Toast.makeText(this, "Venta registrada con éxito", Toast.LENGTH_LONG).show()
-            finish()
+
         }, { error ->
             Toast.makeText(this, "Error al registrar la venta: ${error.message}", Toast.LENGTH_LONG).show()
         })
 
         queue.add(request)
-    }
-    fun nuevo() {
-        txtdni.setText("")
-        txtclient.setText("")
-        txtnumbersale.setText("")
-        txtquantity.setText("")
-        txtsubtotal.setText("")
-        txtigv.setText("")
-        txttotal.setText("")
-
-        cbdiscount.isChecked = false
-
-        // Reinicia el Spinner al primer elemento
-        if (cbolista.adapter != null && cbolista.adapter.count > 0) {
-            cbolista.setSelection(0)
-        }
-
-        txtdni.requestFocus()
     }
     fun new() {
         txtdni.setText("")
@@ -249,7 +230,7 @@ class RegistrarVenta : AppCompatActivity() {
 
         cbdiscount.isChecked = false
 
-        // Reinicia el Spinner al primer elemento
+
         if (cbolista.adapter != null && cbolista.adapter.count > 0) {
             cbolista.setSelection(0)
         }
@@ -261,7 +242,6 @@ class RegistrarVenta : AppCompatActivity() {
 
 }
 
-// Clase Producto con los mismos campos que el backend
 data class Product(
     val id: Int,
     val code: String,
