@@ -83,19 +83,23 @@ class ListarProductos : AppCompatActivity() {
         val request = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response: JSONArray ->
-                productos.clear()
-                for (i in 0 until response.length()) {
-                    val productObject = response.getJSONObject(i)
-                    val producto = Producto(
-                        productObject.getString("code"),
-                        productObject.getString("name"),
-                        productObject.getDouble("price"),
-                        productObject.getInt("stock"),
-                        productObject.getString("size")
-                    )
-                    productos.add(producto)
+                if (response.length() == 0) {
+                    Toast.makeText(this, "Producto no encontrado", Toast.LENGTH_SHORT).show()
+                } else {
+                    productos.clear()
+                    for (i in 0 until response.length()) {
+                        val productObject = response.getJSONObject(i)
+                        val producto = Producto(
+                            productObject.getString("code"),
+                            productObject.getString("name"),
+                            productObject.getDouble("price"),
+                            productObject.getInt("stock"),
+                            productObject.getString("size")
+                        )
+                        productos.add(producto)
+                    }
+                    adaptador.notifyDataSetChanged()
                 }
-                adaptador.notifyDataSetChanged()
             },
             { error ->
                 Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()
