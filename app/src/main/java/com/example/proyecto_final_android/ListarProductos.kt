@@ -9,70 +9,66 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.StringRequest
 import org.json.JSONArray
-import org.json.JSONObject
-import java.lang.Exception
 
 class ListarProductos : AppCompatActivity() {
 
-    lateinit var btnregresar2: Button
-    lateinit var btnSearch: Button
-    lateinit var editTextProductCode: EditText
-    lateinit var listViewProducts: ListView
-    lateinit var productList: ArrayList<Producto>
-    lateinit var adapter: ProductoLista
+    lateinit var btnRegresar: Button
+    lateinit var btnBuscar: Button
+    lateinit var txtCodigoProducto: EditText
+    lateinit var listaProductos: ListView
+    lateinit var productos: ArrayList<Producto>
+    lateinit var adaptador: ProductoLista
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listar_productos)
 
-        btnregresar2 = findViewById(R.id.btnregresar2)
-        listViewProducts = findViewById(R.id.listViewProducts)
-        productList = ArrayList()
-        btnSearch = findViewById(R.id.btnSearch)
-        editTextProductCode = findViewById(R.id.editTextProductCode)
+        btnRegresar = findViewById(R.id.btnregresar2)
+        listaProductos = findViewById(R.id.listaProductos)
+        productos = ArrayList()
+        btnBuscar = findViewById(R.id.btnBuscar)
+        txtCodigoProducto = findViewById(R.id.txtCodigoProducto)
 
-        adapter = ProductoLista(this, productList)
-        listViewProducts.adapter = adapter
+        adaptador = ProductoLista(this, productos)
+        listaProductos.adapter = adaptador
 
-
-        btnSearch.setOnClickListener{
-            val code = editTextProductCode.text.toString()
-            if (code.isNotEmpty()) {
-                searchProductByCode(code)
+        btnBuscar.setOnClickListener {
+            val codigo = txtCodigoProducto.text.toString()
+            if (codigo.isNotEmpty()) {
+                buscarProductoPorCodigo(codigo)
             } else {
-                Toast.makeText(this, "Por favor ingrese un codigo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor ingrese un código", Toast.LENGTH_SHORT).show()
             }
         }
 
-        btnregresar2.setOnClickListener {
+        btnRegresar.setOnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
 
-        loadProducts()
+        cargarProductos()
     }
 
-    private fun loadProducts() {
+    private fun cargarProductos() {
         val request = JsonArrayRequest(
             Request.Method.GET, EndPoints.GET_ALL_PRODUCTS, null,
             { response: JSONArray ->
-                productList.clear()
+                productos.clear()
                 for (i in 0 until response.length()) {
                     val jsonObject = response.getJSONObject(i)
                     if (jsonObject.getBoolean("status")) {
-                        val product = Producto(
+                        val producto = Producto(
                             jsonObject.getString("code"),
                             jsonObject.getString("name"),
                             jsonObject.getDouble("price"),
                             jsonObject.getInt("stock"),
                             jsonObject.getString("size")
                         )
-                        productList.add(product)
+                        productos.add(producto)
                     }
                 }
-                adapter.notifyDataSetChanged()
+                adaptador.notifyDataSetChanged()
             },
             { error ->
                 Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()
@@ -81,25 +77,25 @@ class ListarProductos : AppCompatActivity() {
         VolleySingleton.getInstance(this).addToRequestQueue(request)
     }
 
-    private fun searchProductByCode(code: String) {
-        val url = "${EndPoints.GET_CODE_PRODUCTS}/$code"
+    private fun buscarProductoPorCodigo(codigo: String) {
+        val url = "${EndPoints.GET_CODE_PRODUCTS}/$codigo"
 
         val request = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response: JSONArray ->
-                productList.clear()
+                productos.clear()
                 for (i in 0 until response.length()) {
                     val productObject = response.getJSONObject(i)
-                    val product = Producto(
+                    val producto = Producto(
                         productObject.getString("code"),
                         productObject.getString("name"),
                         productObject.getDouble("price"),
                         productObject.getInt("stock"),
                         productObject.getString("size")
                     )
-                    productList.add(product)
+                    productos.add(producto)
                 }
-                adapter.notifyDataSetChanged()
+                adaptador.notifyDataSetChanged()
             },
             { error ->
                 Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()

@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextCode"
+        android:id="@+id/txtCodigo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Buscar por código"
@@ -17,12 +17,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="8dp">
 
         <Button
-            android:id="@+id/btnSearchProduct"
+            android:id="@+id/btnBuscarProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -33,7 +32,7 @@
             app:iconSize="50px" />
 
         <Button
-            android:id="@+id/btnClearFields"
+            android:id="@+id/btnLimpiarCampos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LIMPIAR"
@@ -42,9 +41,8 @@
             app:iconSize="50px" />
     </LinearLayout>
 
-    <!-- Campos de producto -->
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Producto"
@@ -52,7 +50,7 @@
         android:layout_marginTop="8dp"/>
 
     <EditText
-        android:id="@+id/editTextPrice"
+        android:id="@+id/txtPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Precio"
@@ -61,7 +59,7 @@
         android:layout_marginTop="8dp"/>
 
     <EditText
-        android:id="@+id/editTextStock"
+        android:id="@+id/txtStock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Stock"
@@ -70,7 +68,7 @@
         android:layout_marginTop="8dp"/>
 
     <RadioGroup
-        android:id="@+id/radioGroupSize"
+        android:id="@+id/rgTipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -79,7 +77,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioPersonal"
+            android:id="@+id/rbPersonal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -91,7 +89,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioMedium"
+            android:id="@+id/rdMediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -101,14 +99,13 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioFamily"
+            android:id="@+id/rdFamiliar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Familiar"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
     </RadioGroup>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -118,7 +115,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnAddProduct"
+            android:id="@+id/btnAgregarProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -129,7 +126,7 @@
             app:iconSize="50px" />
 
         <Button
-            android:id="@+id/btnUpdateProduct"
+            android:id="@+id/btnEditarProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -140,7 +137,7 @@
             app:iconSize="50px" />
 
         <Button
-            android:id="@+id/btnChangeStatus"
+            android:id="@+id/btnEliminarProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ELIMINAR"
@@ -149,7 +146,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnregresar4"
+        android:id="@+id/btnRegresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -160,7 +157,7 @@
         app:iconSize="50px" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenPizza"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/pizza3" />

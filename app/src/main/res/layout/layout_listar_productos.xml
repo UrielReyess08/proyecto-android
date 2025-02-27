@@ -15,12 +15,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Código:"
+            android:text="Código: "
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/textViewCode"
+            android:id="@+id/txtVercodigo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white" />
@@ -35,12 +35,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre:"
+            android:text="Nombre: "
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/txtVerNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white" />
@@ -55,12 +55,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Precio:S/"
+            android:text="Precio: S/"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/textViewPrice"
+            android:id="@+id/txtVerPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white" />
@@ -75,12 +75,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stock:"
+            android:text="Stock: "
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/textViewStock"
+            android:id="@+id/txtVerStock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white" />
@@ -95,12 +95,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tamaño:"
+            android:text="Tamaño: "
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/textViewSize"
+            android:id="@+id/txtVerSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white" />

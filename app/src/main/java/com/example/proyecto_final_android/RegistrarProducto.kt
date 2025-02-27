@@ -12,105 +12,104 @@ import org.json.JSONObject
 
 class RegistrarProducto : AppCompatActivity() {
 
-    lateinit var btnregresar4: Button
-    lateinit var btnChangeStatus: Button
-    lateinit var btnAddProduct: Button
-    lateinit var btnSearchProduct: Button
-    lateinit var btnUpdateProduct: Button
-    lateinit var btnClearFields: Button
-    lateinit var editTextCode: EditText
-    lateinit var editTextName: EditText
-    lateinit var editTextPrice: EditText
-    lateinit var editTextStock: EditText
-    lateinit var radioGroupSize: RadioGroup
+    lateinit var btnRegresar: Button
+    lateinit var btnEliminarProducto: Button
+    lateinit var btnAgregarProducto: Button
+    lateinit var btnBuscarProducto: Button
+    lateinit var btnEditarProducto: Button
+    lateinit var btnLimpiarCampos: Button
+    lateinit var txtCodigo: EditText
+    lateinit var txtNombre: EditText
+    lateinit var txtPrecio: EditText
+    lateinit var txtStock: EditText
+    lateinit var rgTipo: RadioGroup
     var productId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar_producto)
 
-        btnregresar4 = findViewById(R.id.btnregresar4)
-        btnAddProduct = findViewById(R.id.btnAddProduct)
-        btnSearchProduct = findViewById(R.id.btnSearchProduct)
-        btnUpdateProduct = findViewById(R.id.btnUpdateProduct)
-        btnChangeStatus = findViewById(R.id.btnChangeStatus)
-        btnClearFields = findViewById(R.id.btnClearFields)
-        editTextCode = findViewById(R.id.editTextCode)
-        editTextName = findViewById(R.id.editTextName)
-        editTextPrice = findViewById(R.id.editTextPrice)
-        editTextStock = findViewById(R.id.editTextStock)
-        radioGroupSize = findViewById(R.id.radioGroupSize)
+        btnRegresar = findViewById(R.id.btnRegresar)
+        btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
+        btnBuscarProducto = findViewById(R.id.btnBuscarProducto)
+        btnEditarProducto = findViewById(R.id.btnEditarProducto)
+        btnEliminarProducto = findViewById(R.id.btnEliminarProducto)
+        btnLimpiarCampos = findViewById(R.id.btnLimpiarCampos)
+        txtCodigo = findViewById(R.id.txtCodigo)
+        txtNombre = findViewById(R.id.txtNombre)
+        txtPrecio = findViewById(R.id.txtPrecio)
+        txtStock = findViewById(R.id.txtStock)
+        rgTipo = findViewById(R.id.rgTipo)
 
-        btnregresar4.setOnClickListener{
+        btnRegresar.setOnClickListener{
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
 
-        btnAddProduct.setOnClickListener{
-            val code = editTextCode.text.toString()
-            val name = editTextName.text.toString()
-            val price = editTextPrice.text.toString()
-            val stock = editTextStock.text.toString()
-            val selectedSizeId = radioGroupSize.checkedRadioButtonId
+        btnAgregarProducto.setOnClickListener{
+            val codigo = txtCodigo.text.toString()
+            val nombre = txtNombre.text.toString()
+            val precio = txtPrecio.text.toString()
+            val stock = txtStock.text.toString()
+            val idTamañoSeleccionado = rgTipo.checkedRadioButtonId
 
-            if (code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty() || selectedSizeId == -1) {
+            if (codigo.isEmpty() || nombre.isEmpty() || precio.isEmpty() || stock.isEmpty() || idTamañoSeleccionado == -1) {
                 Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
-            addProduct(code, name, price.toDouble(), stock.toInt(), selectedSize)
+            val tamañoSeleccionado = findViewById<RadioButton>(idTamañoSeleccionado).text.toString()
+            agregarProducto(codigo, nombre, precio.toDouble(), stock.toInt(), tamañoSeleccionado)
         }
 
-        btnClearFields.setOnClickListener {
-            clearFields()
+        btnLimpiarCampos.setOnClickListener {
+            limpiar()
         }
 
-        btnChangeStatus.setOnClickListener {
+        btnEliminarProducto.setOnClickListener {
             if (productId != null) {
-                changeProductStatus(productId!!)
+                eliminarProducto(productId!!)
             } else {
                 Toast.makeText(this, "Por favor busque un producto primero", Toast.LENGTH_SHORT).show()
             }
         }
 
-        btnUpdateProduct.setOnClickListener {
-            val code = editTextCode.text.toString()
-            val name = editTextName.text.toString()
-            val price = editTextPrice.text.toString()
-            val stock = editTextStock.text.toString()
-            val selectedSizeId = radioGroupSize.checkedRadioButtonId
+        btnEditarProducto.setOnClickListener {
+            val codigo = txtCodigo.text.toString()
+            val nombre = txtNombre.text.toString()
+            val precio = txtPrecio.text.toString()
+            val stock = txtStock.text.toString()
+            val idTamañoSeleccionado = rgTipo.checkedRadioButtonId
 
-            if (productId == null || code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty() || selectedSizeId == -1) {
+            if (productId == null || codigo.isEmpty() || nombre.isEmpty() || precio.isEmpty() || stock.isEmpty() || idTamañoSeleccionado == -1) {
                 Toast.makeText(this, "Por favor complete todos los campos y busque un producto", Toast.LENGTH_SHORT).show()
-               return@setOnClickListener
+                return@setOnClickListener
             }
 
-            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
-            updateProduct(productId!!, code, name, price.toDouble(), stock.toInt(), selectedSize)
+            val tamañoSeleccionado = findViewById<RadioButton>(idTamañoSeleccionado).text.toString()
+            editarProducto(productId!!, codigo, nombre, precio.toDouble(), stock.toInt(), tamañoSeleccionado)
         }
 
-        btnSearchProduct.setOnClickListener {
-            val code = editTextCode.text.toString()
-            if (code.isNotEmpty()) {
-                searchProductByCode(code)
+        btnBuscarProducto.setOnClickListener {
+            val codigo = txtCodigo.text.toString()
+            if (codigo.isNotEmpty()) {
+                buscarProductoPorCodigo(codigo)
             } else {
                 Toast.makeText(this, "Por favor ingrese un código", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
-    private fun addProduct(code: String, name: String, price: Double, stock: Int, size: String) {
+    private fun agregarProducto(codigo: String, nombre: String, precio: Double, stock: Int, tamaño: String) {
         val url = EndPoints.SAVE_PRODUCT
         val requestQueue = Volley.newRequestQueue(this)
 
         val jsonBody = JSONObject()
-        jsonBody.put("code", code)
-        jsonBody.put("name", name)
-        jsonBody.put("price", price)
+        jsonBody.put("code", codigo)
+        jsonBody.put("name", nombre)
+        jsonBody.put("price", precio)
         jsonBody.put("stock", stock)
-        jsonBody.put("size", size)
+        jsonBody.put("size", tamaño)
 
         val request = object : StringRequest(
             Request.Method.POST, url,
@@ -137,8 +136,8 @@ class RegistrarProducto : AppCompatActivity() {
         requestQueue.add(request)
     }
 
-    private fun searchProductByCode(code: String) {
-        val url = "${EndPoints.GET_CODE_PRODUCTS}/$code"
+    private fun buscarProductoPorCodigo(codigo: String) {
+        val url = "${EndPoints.GET_CODE_PRODUCTS}/$codigo"
         val requestQueue = Volley.newRequestQueue(this)
 
         val request = JsonArrayRequest(
@@ -147,14 +146,14 @@ class RegistrarProducto : AppCompatActivity() {
                 if (response.length() > 0) {
                     val productObject = response.getJSONObject(0)
                     productId = productObject.getInt("id")
-                    editTextName.setText(productObject.getString("name"))
-                    editTextPrice.setText(productObject.getDouble("price").toString())
-                    editTextStock.setText(productObject.getInt("stock").toString())
-                    val size = productObject.getString("size")
-                    when (size) {
-                        "Personal" -> radioGroupSize.check(R.id.radioPersonal)
-                        "Mediano" -> radioGroupSize.check(R.id.radioMedium)
-                        "Familiar" -> radioGroupSize.check(R.id.radioFamily)
+                    txtNombre.setText(productObject.getString("name"))
+                    txtPrecio.setText(productObject.getDouble("price").toString())
+                    txtStock.setText(productObject.getInt("stock").toString())
+                    val tamaño = productObject.getString("size")
+                    when (tamaño) {
+                        "Personal" -> rgTipo.check(R.id.rbPersonal)
+                        "Mediano" -> rgTipo.check(R.id.rdMediano)
+                        "Familiar" -> rgTipo.check(R.id.rdFamiliar)
                     }
                 } else {
                     Toast.makeText(this, "Producto no encontrado", Toast.LENGTH_SHORT).show()
@@ -168,17 +167,17 @@ class RegistrarProducto : AppCompatActivity() {
         requestQueue.add(request)
     }
 
-    private fun updateProduct(id: Int, code: String, name: String, price: Double, stock: Int, size: String) {
+    private fun editarProducto(id: Int, codigo: String, nombre: String, precio: Double, stock: Int, tamaño: String) {
         val url = "${EndPoints.UPDATE_PRODUCT}/$id"
         val requestQueue = Volley.newRequestQueue(this)
 
         val jsonBody = JSONObject()
         jsonBody.put("id", id)
-        jsonBody.put("code", code)
-        jsonBody.put("name", name)
-        jsonBody.put("price", price)
+        jsonBody.put("code", codigo)
+        jsonBody.put("name", nombre)
+        jsonBody.put("price", precio)
         jsonBody.put("stock", stock)
-        jsonBody.put("size", size)
+        jsonBody.put("size", tamaño)
 
         val request = object : StringRequest(
             Request.Method.PUT, url,
@@ -201,7 +200,7 @@ class RegistrarProducto : AppCompatActivity() {
         requestQueue.add(request)
     }
 
-    private fun changeProductStatus(id: Int) {
+    private fun eliminarProducto(id: Int) {
         val url = "${EndPoints.DELETE_PRODUCT}/$id"
         val requestQueue = Volley.newRequestQueue(this)
 
@@ -229,12 +228,11 @@ class RegistrarProducto : AppCompatActivity() {
         requestQueue.add(request)
     }
 
-    private fun clearFields() {
-        editTextCode.text.clear()
-        editTextName.text.clear()
-        editTextPrice.text.clear()
-        editTextStock.text.clear()
-        radioGroupSize.clearCheck()
+    private fun limpiar() {
+        txtCodigo.text.clear()
+        txtNombre.text.clear()
+        txtPrecio.text.clear()
+        txtStock.text.clear()
+        rgTipo.clearCheck()
     }
-
 }
