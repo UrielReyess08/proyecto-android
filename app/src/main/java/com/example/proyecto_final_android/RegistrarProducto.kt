@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.widget.*
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONArray
 import org.json.JSONObject
 
 class RegistrarProducto : AppCompatActivity() {
@@ -54,13 +52,14 @@ class RegistrarProducto : AppCompatActivity() {
             val price = editTextPrice.text.toString()
             val stock = editTextStock.text.toString()
             val selectedSizeId = radioGroupSize.checkedRadioButtonId
-            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
 
-            if (code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty()) {
-                Toast.makeText(this, "Porfavor complete todos los campos", Toast.LENGTH_SHORT).show()
-            } else {
-                addProduct(code, name, price.toDouble(), stock.toInt(), selectedSize)
+            if (code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty() || selectedSizeId == -1) {
+                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
+            addProduct(code, name, price.toDouble(), stock.toInt(), selectedSize)
         }
 
         btnClearFields.setOnClickListener {
@@ -81,13 +80,14 @@ class RegistrarProducto : AppCompatActivity() {
             val price = editTextPrice.text.toString()
             val stock = editTextStock.text.toString()
             val selectedSizeId = radioGroupSize.checkedRadioButtonId
-            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
 
-            if (productId == null || code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty() || selectedSize.isEmpty()) {
-                Toast.makeText(this, "Por favor complete todos los campos y busque un producto primero", Toast.LENGTH_SHORT).show()
-            } else {
-                updateProduct(productId!!, code, name, price.toDouble(), stock.toInt(), selectedSize)
+            if (productId == null || code.isEmpty() || name.isEmpty() || price.isEmpty() || stock.isEmpty() || selectedSizeId == -1) {
+                Toast.makeText(this, "Por favor complete todos los campos y busque un producto", Toast.LENGTH_SHORT).show()
+               return@setOnClickListener
             }
+
+            val selectedSize = findViewById<RadioButton>(selectedSizeId).text.toString()
+            updateProduct(productId!!, code, name, price.toDouble(), stock.toInt(), selectedSize)
         }
 
         btnSearchProduct.setOnClickListener {
@@ -118,7 +118,11 @@ class RegistrarProducto : AppCompatActivity() {
                 Toast.makeText(this, "Producto agregado correctamente", Toast.LENGTH_SHORT).show()
             },
             { error ->
-                Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()
+                if (error.networkResponse?.statusCode == 409) {
+                    Toast.makeText(this, "Este código ya ha sido registrado", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()
+                }
             }
         ) {
             override fun getBodyContentType(): String {

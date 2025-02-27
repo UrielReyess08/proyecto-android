@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnsesion: Button
     lateinit var txtname: EditText
     lateinit var txtpassword: EditText
+    lateinit var btncerrar : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +28,17 @@ class MainActivity : AppCompatActivity() {
         txtname = findViewById(R.id.txtname)
         txtpassword = findViewById(R.id.txtpassword)
         btnsesion = findViewById(R.id.btnsesion)
+        btncerrar = findViewById(R.id.btncerrar)
 
 
         btnsesion.setOnClickListener {
             loginUsuario()
         }
+
+        btncerrar.setOnClickListener{
+            salir()
+        }
+
     }
     private fun loginUsuario() {
         val nombre = txtname.text.toString().trim()
@@ -82,6 +90,24 @@ class MainActivity : AppCompatActivity() {
 
         // Agregar la solicitud a la cola de Volley
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest)
+    }
+
+    private fun salir():Boolean {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder
+            .setMessage("Fin de la APP")
+            .setTitle("Cerrar App")
+            .setPositiveButton(android.R.string.yes) { _, _ ->
+                Toast.makeText(applicationContext, "Se cerró la aplicación", Toast.LENGTH_SHORT).show()
+                finishAffinity()
+            }
+            .setNegativeButton(android.R.string.no) { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+        return true
     }
 
 }
