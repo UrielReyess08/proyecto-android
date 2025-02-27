@@ -23,7 +23,7 @@ class VentaLista(private val context: Activity, private val sales: MutableList<V
         val textViewQuantity = listViewItem.findViewById<TextView>(R.id.textViewQuantity)
         val textViewTotal = listViewItem.findViewById<TextView>(R.id.textViewTotal)
         val textViewDiscount = listViewItem.findViewById<TextView>(R.id.textViewDiscount)
-        val btnDeleteSale = listViewItem.findViewById<Button>(R.id.btndeletesale)
+        val btnEliminarVenta = listViewItem.findViewById<Button>(R.id.btneliminarventa)
 
         val sale = sales[position]
         textNumberSale.text = sale.number_sale
@@ -36,15 +36,15 @@ class VentaLista(private val context: Activity, private val sales: MutableList<V
         textViewDiscount.text = sale.discount.toString()
 
 
-        btnDeleteSale.setOnClickListener {
-            disableSale(sale.number_sale, position)
+        btnEliminarVenta.setOnClickListener {
+            eliminarVenta(sale.number_sale, position)
         }
 
         return listViewItem
     }
 
 
-    private fun disableSale(numberSale: String, position: Int) {
+    private fun eliminarVenta(numberSale: String,position: Int) {
         val url = "${EndPoints.DISABLE_SALE}/$numberSale"
 
         val request = StringRequest(

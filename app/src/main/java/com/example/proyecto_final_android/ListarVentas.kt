@@ -8,7 +8,6 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import org.json.JSONArray
@@ -16,7 +15,7 @@ import org.json.JSONArray
 class ListarVentas : AppCompatActivity() {
 
     lateinit var btnregresar3: Button
-    lateinit var btnSearch1: Button
+    lateinit var btnBuscar1: Button
     lateinit var editTextListSaleCode: EditText
     lateinit var listViewSales: ListView
     lateinit var salesList: ArrayList<Venta>
@@ -28,7 +27,7 @@ class ListarVentas : AppCompatActivity() {
         setContentView(R.layout.activity_listar_ventas)
 
         editTextListSaleCode = findViewById(R.id.editTextListSaleCode)
-        btnSearch1 = findViewById(R.id.btnSearch1)
+        btnBuscar1 = findViewById(R.id.btnBuscar1)
         btnregresar3 = findViewById(R.id.btnregresar3)
         listViewSales = findViewById(R.id.listViewSales)
         salesList = ArrayList()
@@ -36,7 +35,7 @@ class ListarVentas : AppCompatActivity() {
         adapter = VentaLista(this, salesList)
         listViewSales.adapter = adapter
 
-        btnSearch1.setOnClickListener{
+        btnBuscar1.setOnClickListener{
             val code = editTextListSaleCode.text.toString()
             if (code.isNotEmpty()) {
                 searchSaleByNumber(code)
@@ -129,7 +128,12 @@ class ListarVentas : AppCompatActivity() {
                 }
             },
             { error ->
-                Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()
+
+                if (error.networkResponse?.statusCode == 404) {
+                    Toast.makeText(this, "Venta no encontrada", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error: ${error.networkResponse?.statusCode} - ${error.message}", Toast.LENGTH_LONG).show()
+                }
             }
         )
 
