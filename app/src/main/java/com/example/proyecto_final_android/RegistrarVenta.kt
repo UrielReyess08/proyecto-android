@@ -18,7 +18,6 @@ class RegistrarVenta : AppCompatActivity() {
 
     lateinit var btnregresar5: Button
     lateinit var txtdni: EditText
-
     lateinit var txtcliente: EditText
     lateinit var cbolista: Spinner
     lateinit var txttotal: EditText
@@ -26,46 +25,26 @@ class RegistrarVenta : AppCompatActivity() {
     lateinit var btnGuardarventa: Button
     lateinit var cbdescuento: CheckBox
     lateinit var btnnuevo : Button
-
     lateinit var txtsubtotal: EditText
     lateinit var txtigv: EditText
-
     lateinit var txtnumeroventa: EditText
-
-
-
     var productList = mutableListOf<Product>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar_venta)
-
         txtdni = findViewById(R.id.txtdni)
         txtcliente = findViewById(R.id.txtcliente)
         txtnumeroventa = findViewById(R.id.txtnumeroventa)
-
         cbolista = findViewById(R.id.cbolista)
-
         txtcantidad = findViewById(R.id.txtcantidad)
         btnGuardarventa = findViewById(R.id.btnGuardarventa)
         btnregresar5 = findViewById(R.id.btnregresar5)
         btnnuevo = findViewById(R.id.btnnuevo)
-
-
         txtsubtotal = findViewById(R.id.txtsubtotal)
         txtigv = findViewById(R.id.txtigv)
         txttotal = findViewById(R.id.txttotal)
-
-
-
-
         cbdescuento = findViewById(R.id.cbdescuento)
-
-
-
         CargarProductos()
-
-
         txtcantidad.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 calcularSubTotal()
@@ -76,7 +55,6 @@ class RegistrarVenta : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
-
 
         btnGuardarventa.setOnClickListener {
             Guardarventa()
@@ -159,16 +137,10 @@ class RegistrarVenta : AppCompatActivity() {
 
         txttotal.setText(totalFormateado)
     }
-
-
-    private fun getCurrentDate(): String {
+    private fun obtenerFecha(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return sdf.format(Date())
     }
-
-
-
-
 
     private fun Guardarventa() {
         val queue = Volley.newRequestQueue(this)
@@ -176,7 +148,7 @@ class RegistrarVenta : AppCompatActivity() {
 
         val numbersale = txtnumeroventa.text.toString()
         val dni = txtdni.text.toString()
-        val date = getCurrentDate()
+        val date = obtenerFecha()
         val client = txtcliente.text.toString()
         val quantity = txtcantidad.text.toString().toIntOrNull() ?: 1
         val selectedIndex = cbolista.selectedItemPosition
@@ -228,8 +200,6 @@ class RegistrarVenta : AppCompatActivity() {
 
         queue.add(request)
 
-
-        queue.add(request)
     }
     fun nuevo() {
         txtdni.setText("")
@@ -239,7 +209,6 @@ class RegistrarVenta : AppCompatActivity() {
         txtsubtotal.setText("")
         txtigv.setText("")
         txttotal.setText("")
-
         cbdescuento.isChecked = false
 
 

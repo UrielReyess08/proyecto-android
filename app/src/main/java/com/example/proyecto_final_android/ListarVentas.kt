@@ -38,7 +38,7 @@ class ListarVentas : AppCompatActivity() {
         btnBuscar1.setOnClickListener{
             val code = editTextListSaleCode.text.toString()
             if (code.isNotEmpty()) {
-                searchSaleByNumber(code)
+                buscarVentaporCodigo(code)
             } else {
                 Toast.makeText(this, "Por favor ingrese un codigo", Toast.LENGTH_SHORT).show()
             }
@@ -49,10 +49,10 @@ class ListarVentas : AppCompatActivity() {
             startActivity(intent)
         }
 
-        loadSales()
+        cargarVenta()
     }
 
-    private fun loadSales() {
+    private fun cargarVenta() {
         val request = StringRequest(
             Request.Method.GET, EndPoints.GET_ALL_SALES,
             { response ->
@@ -92,7 +92,7 @@ class ListarVentas : AppCompatActivity() {
         )
         VolleySingleton.getInstance(this).addToRequestQueue(request)
     }
-    private fun searchSaleByNumber(code: String) {
+    private fun buscarVentaporCodigo(code: String) {
         val url = "${EndPoints.GET_NUMBER_SALES}/$code"
 
         val request = JsonObjectRequest(
