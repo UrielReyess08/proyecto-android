@@ -8,50 +8,47 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 
-class VentaLista(private val context: Activity, private val sales: MutableList<Venta>) :
-    ArrayAdapter<Venta>(context, R.layout.layout_listar_ventas, sales) {
+class VentaLista(private val context: Activity, private val ventas: MutableList<Venta>) :
+    ArrayAdapter<Venta>(context, R.layout.layout_listar_ventas, ventas) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
         val listViewItem = inflater.inflate(R.layout.layout_listar_ventas, null, true)
 
-        val textNumberSale = listViewItem.findViewById<TextView>(R.id.textNumberSale)
-        val textViewDni = listViewItem.findViewById<TextView>(R.id.textViewDni)
-        val textViewDateLocal = listViewItem.findViewById<TextView>(R.id.textViewDateLocal)
-        val textViewClient = listViewItem.findViewById<TextView>(R.id.textViewClient)
-        val textViewProduct = listViewItem.findViewById<TextView>(R.id.textViewProduct)
-        val textViewQuantity = listViewItem.findViewById<TextView>(R.id.textViewQuantity)
-        val textViewTotal = listViewItem.findViewById<TextView>(R.id.textViewTotal)
-        val textViewDiscount = listViewItem.findViewById<TextView>(R.id.textViewDiscount)
+        val txtNumeroVenta = listViewItem.findViewById<TextView>(R.id.txtNumeroVenta)
+        val txtDni = listViewItem.findViewById<TextView>(R.id.txtDni)
+        val txtFechaVenta = listViewItem.findViewById<TextView>(R.id.txtFechaVenta)
+        val txtCliente = listViewItem.findViewById<TextView>(R.id.txtCliente)
+        val txtProducto = listViewItem.findViewById<TextView>(R.id.txtProducto)
+        val txtCantidad = listViewItem.findViewById<TextView>(R.id.txtCantidad)
+        val txtTotal = listViewItem.findViewById<TextView>(R.id.txtTotal)
+        val txtDescuento = listViewItem.findViewById<TextView>(R.id.txtDescuento)
         val btnEliminarVenta = listViewItem.findViewById<Button>(R.id.btneliminarventa)
 
-        val sale = sales[position]
-        textNumberSale.text = sale.number_sale
-        textViewDni.text = sale.dni
-        textViewDateLocal.text = sale.date
-        textViewClient.text = sale.client
-        textViewProduct.text = sale.product.name
-        textViewQuantity.text = sale.quantity.toString()
-        textViewTotal.text = sale.total.toString()
-        textViewDiscount.text = sale.discount.toString()
-
+        val venta = ventas[position]
+        txtNumeroVenta.text = venta.number_sale
+        txtDni.text = venta.dni
+        txtFechaVenta.text = venta.date
+        txtCliente.text = venta.client
+        txtProducto.text = venta.product.name
+        txtCantidad.text = venta.quantity.toString()
+        txtTotal.text = venta.total.toString()
+        txtDescuento.text = venta.discount.toString()
 
         btnEliminarVenta.setOnClickListener {
-            eliminarVenta(sale.number_sale, position)
+            eliminarVenta(venta.number_sale, position)
         }
 
         return listViewItem
     }
 
-
-    private fun eliminarVenta(numberSale: String,position: Int) {
-        val url = "${EndPoints.DISABLE_SALE}/$numberSale"
+    private fun eliminarVenta(numeroVenta: String, position: Int) {
+        val url = "${EndPoints.DISABLE_SALE}/$numeroVenta"
 
         val request = StringRequest(
             Request.Method.PUT, url,
             { response ->
-                Toast.makeText(context, "Venta desactivada correctamente", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "Venta desactivada correctamente", Toast.LENGTH_SHORT).show()
             },
             { error ->
                 Toast.makeText(
@@ -64,5 +61,4 @@ class VentaLista(private val context: Activity, private val sales: MutableList<V
 
         Volley.newRequestQueue(context).add(request)
     }
-
 }
