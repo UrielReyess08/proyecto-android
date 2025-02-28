@@ -18,74 +18,52 @@ class RegistrarVenta : AppCompatActivity() {
 
     lateinit var btnregresar5: Button
     lateinit var txtdni: EditText
-
-    lateinit var txtclient: EditText
+    lateinit var txtcliente: EditText
     lateinit var cbolista: Spinner
     lateinit var txttotal: EditText
-    lateinit var txtquantity: EditText
-    lateinit var btnAddSave: Button
-    lateinit var cbdiscount: CheckBox
-    lateinit var btnnew : Button
-
+    lateinit var txtcantidad: EditText
+    lateinit var btnGuardarventa: Button
+    lateinit var cbdescuento: CheckBox
+    lateinit var btnnuevo : Button
     lateinit var txtsubtotal: EditText
     lateinit var txtigv: EditText
-
-    lateinit var txtnumbersale: EditText
-
-
-
+    lateinit var txtnumeroventa: EditText
     var productList = mutableListOf<Product>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar_venta)
-
         txtdni = findViewById(R.id.txtdni)
-        txtclient = findViewById(R.id.txtclient)
-        txtnumbersale = findViewById(R.id.txtnumbersale)
-
+        txtcliente = findViewById(R.id.txtcliente)
+        txtnumeroventa = findViewById(R.id.txtnumeroventa)
         cbolista = findViewById(R.id.cbolista)
-
-        txtquantity = findViewById(R.id.txtquantity)
-        btnAddSave = findViewById(R.id.btnAddSave)
+        txtcantidad = findViewById(R.id.txtcantidad)
+        btnGuardarventa = findViewById(R.id.btnGuardarventa)
         btnregresar5 = findViewById(R.id.btnregresar5)
-        btnnew = findViewById(R.id.btnnew)
-
-
+        btnnuevo = findViewById(R.id.btnnuevo)
         txtsubtotal = findViewById(R.id.txtsubtotal)
         txtigv = findViewById(R.id.txtigv)
         txttotal = findViewById(R.id.txttotal)
-
-
-
-
-        cbdiscount = findViewById(R.id.cbdiscount)
-
-
-
-        loadProducts()
-
-
-        txtquantity.addTextChangedListener(object : TextWatcher {
+        cbdescuento = findViewById(R.id.cbdescuento)
+        CargarProductos()
+        txtcantidad.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                calculateSubTotal()
-                calculateIGV()
-                calculateTotal()
+                calcularSubTotal()
+                calcularIGV()
+                calcularTotal()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-
-        btnAddSave.setOnClickListener {
-            saveSale()
+        btnGuardarventa.setOnClickListener {
+            Guardarventa()
         }
-        btnnew.setOnClickListener{
-            new()
+        btnnuevo.setOnClickListener{
+            nuevo()
         }
-        cbdiscount.setOnCheckedChangeListener { _, _ ->
-            calculateTotal()
+        cbdescuento.setOnCheckedChangeListener { _, _ ->
+            calcularTotal()
         }
 
         btnregresar5.setOnClickListener {
@@ -95,7 +73,7 @@ class RegistrarVenta : AppCompatActivity() {
     }
 
 
-    private fun loadProducts() {
+    private fun CargarProductos() {
         val queue = Volley.newRequestQueue(this)
         val request = JsonArrayRequest(Request.Method.GET, EndPoints.GET_ALL_PRODUCTS, null, { response ->
             productList.clear()
@@ -126,8 +104,8 @@ class RegistrarVenta : AppCompatActivity() {
     }
 
 
-    private fun calculateSubTotal() {
-        val quantity = txtquantity.text.toString().toIntOrNull() ?: 0
+    private fun calcularSubTotal() {
+        val quantity = txtcantidad.text.toString().toIntOrNull() ?: 0
         val selectedIndex = cbolista.selectedItemPosition
         if (selectedIndex >= 0 && selectedIndex < productList.size) {
             val product = productList[selectedIndex]
@@ -136,19 +114,19 @@ class RegistrarVenta : AppCompatActivity() {
         }
     }
 
-    private fun calculateIGV() {
+    private fun calcularIGV() {
         val subtotal = txtsubtotal.text.toString().toDoubleOrNull() ?: 0.0
         val igv = subtotal * 0.18
         txtigv.setText(igv.toString())
     }
 
-    private fun calculateTotal() {
+    private fun calcularTotal() {
         val subtotal = txtsubtotal.text.toString().toDoubleOrNull() ?: 0.0
         val igv = txtigv.text.toString().toDoubleOrNull() ?: 0.0
         var descuento = 0.0
 
 
-        if (cbdiscount.isChecked) {
+        if (cbdescuento.isChecked) {
             descuento = subtotal * 0.10
         }
 
@@ -159,26 +137,20 @@ class RegistrarVenta : AppCompatActivity() {
 
         txttotal.setText(totalFormateado)
     }
-
-
-    private fun getCurrentDate(): String {
+    private fun obtenerFecha(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return sdf.format(Date())
     }
 
-
-
-
-
-    private fun saveSale() {
+    private fun Guardarventa() {
         val queue = Volley.newRequestQueue(this)
 
 
-        val numbersale = txtnumbersale.text.toString()
+        val numbersale = txtnumeroventa.text.toString()
         val dni = txtdni.text.toString()
-        val date = getCurrentDate()
-        val client = txtclient.text.toString()
-        val quantity = txtquantity.text.toString().toIntOrNull() ?: 1
+        val date = obtenerFecha()
+        val client = txtcliente.text.toString()
+        val quantity = txtcantidad.text.toString().toIntOrNull() ?: 1
         val selectedIndex = cbolista.selectedItemPosition
 
         if (numbersale.isEmpty() || dni.isEmpty() || client.isEmpty() || quantity <= 0 || selectedIndex < 0) {
@@ -192,7 +164,7 @@ class RegistrarVenta : AppCompatActivity() {
         var total = subtotal + igv
 
 
-        val discount = if (cbdiscount.isChecked) subtotal * 0.10 else 0.0
+        val discount = if (cbdescuento.isChecked) subtotal * 0.10 else 0.0
         total -= discount
 
         val jsonVenta = JSONObject().apply {
@@ -228,19 +200,16 @@ class RegistrarVenta : AppCompatActivity() {
 
         queue.add(request)
 
-
-        queue.add(request)
     }
-    fun new() {
+    fun nuevo() {
         txtdni.setText("")
-        txtclient.setText("")
-        txtnumbersale.setText("")
-        txtquantity.setText("")
+        txtcliente.setText("")
+        txtnumeroventa.setText("")
+        txtcantidad.setText("")
         txtsubtotal.setText("")
         txtigv.setText("")
         txttotal.setText("")
-
-        cbdiscount.isChecked = false
+        cbdescuento.isChecked = false
 
 
         if (cbolista.adapter != null && cbolista.adapter.count > 0) {

@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <EditText
-        android:id="@+id/txtquantity"
+        android:id="@+id/txtcantidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -159,7 +159,7 @@
         app:layout_constraintVertical_bias="0.177" />
 
     <EditText
-        android:id="@+id/txtnumbersale"
+        android:id="@+id/txtnumeroventa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -169,13 +169,13 @@
         android:textColorHint="#B5FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.093" />
 
     <EditText
-        android:id="@+id/txtclient"
+        android:id="@+id/txtcliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -191,7 +191,7 @@
         app:layout_constraintVertical_bias="0.26" />
 
     <Button
-        android:id="@+id/btnAddSave"
+        android:id="@+id/btnGuardarventa"
         android:layout_width="139dp"
         android:layout_height="45dp"
         android:text="Guardar"
@@ -206,7 +206,7 @@
         app:layout_constraintVertical_bias="0.838" />
 
     <Button
-        android:id="@+id/btnnew"
+        android:id="@+id/btnnuevo"
         android:layout_width="140sp"
         android:layout_height="48sp"
         android:text="NUEVO"
@@ -222,7 +222,7 @@
         app:layout_constraintVertical_bias="0.919" />
 
     <CheckBox
-        android:id="@+id/cbdiscount"
+        android:id="@+id/cbdescuento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10% Descuento"
